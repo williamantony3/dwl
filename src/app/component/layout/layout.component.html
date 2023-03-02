@@ -1,21 +1,27 @@
-<div id="wrapper" class="h-screen bg-[#0a1422]">
-    <div *ngIf="showAds" class="h-[10%] bg-[#3f3f3f] flex justify-evenly">
-        <div class="h-full w-[30%] bg-[#595959]"></div>
-        <div class="h-full w-[30%] bg-[#595959]"></div>
-        <div class="h-full w-[33%] bg-[#595959] relative">
-
+<div id="wrapper" class="h-screen w-screen bg-[#0a1422]">
+    <div class="w-[5%] h-screen bg-[#1d2738] float-left grid grid-cols-1 content-between">
+        <div>
+            <div class="h-[100px] py-[30px]"><img src="/assets/img/logo.png" alt="" srcset="" class=""></div>
+            <div class="rounded-full border-[#0d1725] h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] hover:bg-white">A</div>
+            <div class="rounded-full border-[#0d1725] h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] hover:bg-white">B</div>
+            <div class="rounded-full border-[#0d1725] h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] hover:bg-white">C</div>
         </div>
+        <div class="rounded-full h-[50px] w-[50px] text-white border-solid mx-auto mb-[20px] justify-center flex items-center cursor-pointer bg-[#cf0534] hover:bg-[#cf0534d2]" (click)="loggout()"><a title="Log Out"><img src="/assets/img/power-off.png" alt="Log Out" srcset="" class="w-[30px] h-[30px]"></a></div>
     </div>
-    <div class="h-[80%] columns-3 flex justify-evenly">
+    <div class="w-[95%] h-screen float-right">
+        <div class="h-[90%]">
+            <div class="flex justify-between h-[100px] pr-[30px]">
+                <div class="text-white bg-[#141e2d] pl-[30px] py-[30px] pr-[200px] text-2xl relative before:content-[''] before:absolute before:top-0 before:right-0 before:border-t-[100px] before:border-t-[#141e2d] before:border-r-[100px] before:border-r-[#0a1422] before:w-0">Welcome back ___, you have __ points</div>
+                <div class="text-white">History</div>
+            </div>
+            <div class="columns-3 flex justify-evenly">
 
-        <button (click)="loggout()">loggout</button>
-
-    </div>
-    <div *ngIf="showAds" class="h-[10%] bg-[#3f3f3f] flex justify-evenly">
-        <div class="h-full w-[30%] bg-[#595959]"></div>
-        <div class="h-full w-[30%] bg-[#595959]"></div>
-        <div class="h-full w-[33%] bg-[#595959] relative">
-
+            </div>
+        </div>
+        <div *ngIf="showAds" class="h-[10%] bg-[#3f3f3f] flex justify-evenly">
+            <div class="h-full w-[30%] bg-[#595959]"></div>
+            <div class="h-full w-[30%] bg-[#595959]"></div>
+            <div class="h-full w-[33%] bg-[#595959] relative"></div>
         </div>
     </div>
 </div>
