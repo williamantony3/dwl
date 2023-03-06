@@ -15,53 +15,7 @@
                     <div class="absolute bg-[#1d2738] w-[200px] rounded-full h-[50px] left-[-80px] text-white"><img src="/assets/img/scroll.png" class="w-[30px] h-[30px] inline-block ml-[30px] my-[10px] mr-[10px]" alt="" srcset="">H I S T O R Y</div>
                 </div>
             </div>
-            <div class="h-[80%] flex justify-evenly items-center">
-                <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px]">
-                    <div class="w-full h-full bg-[#111b2b] flex text-white">
-                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                            <div class="text-xs mb-[30px]">H O M E</div>
-                            <img src="/assets/img/united.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                            <div class="text-sm mt-[30px]">Manchester United</div>
-                        </div>
-                        <div class="w-[4%] h-full flex items-center">vs</div>
-                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                            <div class="text-xs mb-[30px]">A W A Y</div>
-                            <img src="/assets/img/city.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                            <div class="text-sm mt-[30px]">Manchester City</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px]">
-                    <div class="w-full h-full bg-[#111b2b] flex text-white">
-                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                            <div class="text-xs mb-[30px]">H O M E</div>
-                            <img src="/assets/img/psg.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                            <div class="text-sm mt-[30px]">Paris Saint Germain</div>
-                        </div>
-                        <div class="w-[4%] h-full flex items-center">vs</div>
-                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                            <div class="text-xs mb-[30px]">A W A Y</div>
-                            <img src="/assets/img/arsenal.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                            <div class="text-sm mt-[30px]">Arsenal</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px]">
-                    <div class="w-full h-full bg-[#111b2b] flex text-white">
-                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                            <div class="text-xs mb-[30px]">H O M E</div>
-                            <img src="/assets/img/barcelona.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                            <div class="text-sm mt-[30px]">Barcelona</div>
-                        </div>
-                        <div class="w-[4%] h-full flex items-center">vs</div>
-                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                            <div class="text-xs mb-[30px]">A W A Y</div>
-                            <img src="/assets/img/madrid.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                            <div class="text-sm mt-[30px]">Real Madrid</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <router-outlet></router-outlet>
         </div>
         <div *ngIf="showAds" class="h-[10%] bg-[#3f3f3f] flex justify-evenly">
             <div class="h-full w-[30%] bg-[#595959]"></div>

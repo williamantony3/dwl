@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './component/layout/layout.component';
+import { HeaderInterceptorService } from './service/header-interceptor/header-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { LayoutComponent } from './component/layout/layout.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,useClass:HeaderInterceptorService,multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

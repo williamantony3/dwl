@@ -16,4 +16,9 @@ export class RestService {
     const request = new HttpRequest("POST", url, { username: username, password: password });
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
+  public getListGameBySegmentId(segmentId: string){
+    const url = this.host + "/segment/getGameBySegmentId/" + segmentId;
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
 }
