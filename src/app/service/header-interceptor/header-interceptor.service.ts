@@ -11,9 +11,14 @@ export class HeaderInterceptorService implements HttpInterceptor {
   constructor(private authS:AuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    let request = req.clone({
-      setHeaders : {Authorization: "Bearer "+ this.authS.getToken()! }
-    })
-    return next.handle(request)
+    if(this.authS.getToken() == null)
+    return next.handle(req)
+    else {
+      let request = req.clone({
+        setHeaders : {Authorization: "Bearer "+ this.authS.getToken()! ,"Access-Control-Allow-Origin":"*"}
+      })
+      return next.handle(request)
+    }
+    
   }
 }

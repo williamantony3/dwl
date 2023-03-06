@@ -1,6 +1,8 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Game } from 'src/app/model/game.model';
+import { team } from 'src/app/model/team.model';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { RestService } from 'src/app/service/rest/rest.service';
 
@@ -21,7 +23,12 @@ export class HomeComponent {
   getGameBySegmentId(segmentId: string) {
     this.rest.getListGameBySegmentId(segmentId).subscribe(event => {
       if (event.type == HttpEventType.Response && event.ok) {
-        console.log(event.body);
+        
+        let data:Game[] = Object(event.body)['data'];
+        console.log(data);
+        data.forEach(element => {
+          console.log(element.away.teamname + " | " + element.home.teamname)
+        })
       }
     })
   }

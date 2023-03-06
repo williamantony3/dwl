@@ -16,8 +16,15 @@ export class RestService {
     const request = new HttpRequest("POST", url, { username: username, password: password });
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
+  // segment
   public getListGameBySegmentId(segmentId: string){
-    const url = this.host + "/segment/getGameBySegmentId/" + segmentId;
+    const url = "http://localhost:8080/segment/getGameBySegmentId/" + segmentId;
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  // game
+  public getGameByGameId(gameId: string){
+    const url = "http://localhost:8080/game/getGameById/" + gameId;
     const request = new HttpRequest("GET", url);
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
