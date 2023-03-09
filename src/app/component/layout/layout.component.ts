@@ -11,7 +11,7 @@ export class LayoutComponent {
   showAds: boolean = true;
 
   constructor(private authS: AuthService) {
-
+    // console.log(authS.getUsername().sub);
   }
 
   loggout() {

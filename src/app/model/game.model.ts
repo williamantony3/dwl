@@ -1,9 +1,10 @@
 import { team } from "./team.model"
+import { teamResponse } from "./teamResponse.model"
 
 export type Game = {
-    away:team,
+    away:teamResponse,
     gameId:string,
     gameName:string,
-    home:team,
+    home:teamResponse,
     locked:number
 }

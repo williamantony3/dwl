@@ -1,0 +1,22 @@
+<div class="p-2">
+    <form action="" [formGroup] = "formGroup" >
+        <mat-form-field appearance="outline" >
+            
+            <input matInput type="text" formControlName="teamName" >
+            <mat-error *ngIf="formGroup.get('teamName')?.valid">error</mat-error>
+          </mat-form-field>
+
+          
+            <mat-label>Team Pics</mat-label>
+            <div class="relative" >
+                <input #myInput type="file" name="file" id="file" accept=""
+                    class="inputfile w-60 h-12 items-center hidden" (change)="uploadFile($event)" />
+                <label
+                    class="hover:cursor-pointer bg-[#1BAAE2] w-60 h-12 text-center content-center p-3 text-white font-bold text-[18] border rounded"
+                    for="file">Upload Stock</label>
+            </div>
+          
+
+    </form>
+    <button (click)="addTeam()">Save</button>
+</div>

@@ -25,6 +25,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",  
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -86,7 +89,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles": [             
               "src/styles.css"
             ],
             "scripts": []

@@ -24,6 +24,9 @@ export class AuthService {
   public isloggin() {
     return !this.jwtHelper.isTokenExpired(this.getToken());
   }
+  public getUsername() {
+    return this.jwtHelper.decodeToken(this.getToken()!);
+  }
 }
 
 export const TOKEN_KEY = "accessToken";

@@ -9,19 +9,41 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './component/layout/layout.component';
 import { HeaderInterceptorService } from './service/header-interceptor/header-interceptor.service';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TeamComponent } from './component/admin/team/team.component';
+import { GameComponent } from './component/admin/game/game.component';
+import { SegmentComponent } from './component/admin/segment/segment.component';
+import { UserComponent } from './component/admin/user/user.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    LayoutComponent
+    LayoutComponent,
+    TeamComponent,
+    GameComponent,
+    SegmentComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CarouselModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,useClass:HeaderInterceptorService,multi:true

@@ -1,47 +1,23 @@
-<div class="h-[80%] flex justify-evenly items-center">
-    <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px]">
-        <div class="w-full h-full bg-[#111b2b] flex text-white">
-            <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                <div class="text-xs mb-[30px]">H O M E</div>
-                <img src="/assets/img/united.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                <div class="text-sm mt-[30px]">Manchester United</div>
-            </div>
-            <div class="w-[4%] h-full flex items-center">vs</div>
-            <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                <div class="text-xs mb-[30px]">A W A Y</div>
-                <img src="/assets/img/city.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                <div class="text-sm mt-[30px]">Manchester City</div>
-            </div>
-        </div>
-    </div>
-    <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px]">
-        <div class="w-full h-full bg-[#111b2b] flex text-white">
-            <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                <div class="text-xs mb-[30px]">H O M E</div>
-                <img src="/assets/img/psg.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                <div class="text-sm mt-[30px]">Paris Saint Germain</div>
-            </div>
-            <div class="w-[4%] h-full flex items-center">vs</div>
-            <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                <div class="text-xs mb-[30px]">A W A Y</div>
-                <img src="/assets/img/arsenal.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                <div class="text-sm mt-[30px]">Arsenal</div>
-            </div>
-        </div>
-    </div>
-    <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px]">
-        <div class="w-full h-full bg-[#111b2b] flex text-white">
-            <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                <div class="text-xs mb-[30px]">H O M E</div>
-                <img src="/assets/img/barcelona.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                <div class="text-sm mt-[30px]">Barcelona</div>
-            </div>
-            <div class="w-[4%] h-full flex items-center">vs</div>
-            <div class="w-[48%] h-full flex justify-center items-center flex-col">
-                <div class="text-xs mb-[30px]">A W A Y</div>
-                <img src="/assets/img/madrid.png" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
-                <div class="text-sm mt-[30px]">Real Madrid</div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <div class="h-[80%] flex justify-evenly items-center"> -->
+    <owl-carousel-o [options]="customOptions" class="h-[80%] flex justify-evenly items-center">
+        <ng-container  *ngFor="let game of listGame">
+            <ng-template carouselSlide [id]="game.gameId">
+                <div class="w-[300px] h-[300px] 2xl:w-[350px] 2xl:h-[350px] bg-[#1d2738] rounded-3xl py-[30px] mx-auto my-0">
+                    <div class="w-full h-full bg-[#111b2b] flex text-white">
+                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
+                            <div class="text-xs mb-[30px]">H O M E</div>
+                            <img src="data:image/png;base64, {{ game.home.base64 }}" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
+                            <div class="text-sm mt-[30px]">{{ game.home.teamname }}</div>
+                        </div>
+                        <div class="w-[4%] h-full flex items-center">vs</div>
+                        <div class="w-[48%] h-full flex justify-center items-center flex-col">
+                            <div class="text-xs mb-[30px]">A W A Y</div>
+                            <img src="data:image/png;base64, {{ game.away.base64 }}" alt="" srcset="" class="w-[100px] h-[100px] object-contain">
+                            <div class="text-sm mt-[30px]">{{ game.away.teamname }}</div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+<!-- </div> -->
