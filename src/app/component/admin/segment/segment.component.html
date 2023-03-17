@@ -1,1 +1,60 @@
-<p>segment works!</p>
+<div class="p-[30px]">
+    <div class="w-full flex justify-between">
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Add Segment</h2>
+            <form action="" [formGroup]="formGroup">
+                <mat-form-field class="w-full">
+                    <input matInput type="text" formControlName="segmentName" placeholder="Segment Name">
+                    <mat-error *ngIf="formGroup.get('segmentName')?.valid">error</mat-error>
+                </mat-form-field>
+                <input type="file" name="file" id="file" accept="image/*" class="inputfile w-60 h-12" (change)="uploadFile($event)" />
+                <div>
+                    <button (click)="addSegment()" class="bg-[#5ac679] px-[10px] py-[5px] rounded-sm">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Edit Segment</h2>
+            <form action="" [formGroup]="editFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="segmentName">
+                        <mat-option *ngFor="let segment of listSegment" [value]="segment.segmentId">
+                          <img src="data:image/png;base64, {{segment.base64}}" alt="" srcset="" class="w-[30px] h-[30px] object-contain inline-block"> {{segment.segmentName}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <div>
+                    <button (click)="editSegment()" class="bg-[#d8ba0f] px-[10px] py-[5px] rounded-sm">Edit</button>
+                    <button (click)="cancelEditSegment()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm ml-3" *ngIf="showEditForm">Cancel</button>
+                </div>
+            </form>
+            <form action="" [formGroup]="editSaveFormGroup" class="mt-10" *ngIf="showEditForm">
+                <mat-form-field class="w-full">
+                    <input matInput type="text" formControlName="segmentName" placeholder="New Segment Name">
+                    <mat-error *ngIf="editSaveFormGroup.get('segmentName')?.valid">error</mat-error>
+                </mat-form-field>
+                <input type="file" name="file" id="file" accept="image/*" class="inputfile w-60 h-12" (change)="uploadFile($event)" />
+                <div>
+                    <button (click)="editSaveSegment()" class="bg-[#5ac679] px-[10px] py-[5px] rounded-sm">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Delete Segment</h2>
+            <form action="" [formGroup]="deleteFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="segmentName">
+                        <mat-option *ngFor="let segment of listSegment" [value]="segment.segmentId">
+                            <img src="data:image/png;base64, {{segment.base64}}" alt="" srcset="" class="w-[30px] h-[30px] object-contain inline-block"> {{segment.segmentName}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <div>
+                    <button (click)="deleteSegment()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

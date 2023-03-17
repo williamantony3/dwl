@@ -20,6 +20,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     TeamComponent,
     GameComponent,
     SegmentComponent,
-    UserComponent
+    UserComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,useClass:HeaderInterceptorService,multi:true

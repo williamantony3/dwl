@@ -1,22 +1,60 @@
-<div class="p-2">
-    <form action="" [formGroup] = "formGroup" >
-        <mat-form-field appearance="outline" >
-            
-            <input matInput type="text" formControlName="teamName" >
-            <mat-error *ngIf="formGroup.get('teamName')?.valid">error</mat-error>
-          </mat-form-field>
+<div class="p-[30px]">
+    <div class="w-full flex justify-between">
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Add Team</h2>
+            <form action="" [formGroup]="formGroup">
+                <mat-form-field class="w-full">
+                    <input matInput type="text" formControlName="teamName" placeholder="Team Name">
+                    <mat-error *ngIf="formGroup.get('teamName')?.valid">error</mat-error>
+                </mat-form-field>
+                <input type="file" name="file" id="file" accept="image/*" class="inputfile w-60 h-12" (change)="uploadFile($event)" />
+                <div>
+                    <button (click)="addTeam()" class="bg-[#5ac679] px-[10px] py-[5px] rounded-sm">Save</button>
+                </div>
+            </form>
+        </div>
 
-          
-            <mat-label>Team Pics</mat-label>
-            <div class="relative" >
-                <input #myInput type="file" name="file" id="file" accept=""
-                    class="inputfile w-60 h-12 items-center hidden" (change)="uploadFile($event)" />
-                <label
-                    class="hover:cursor-pointer bg-[#1BAAE2] w-60 h-12 text-center content-center p-3 text-white font-bold text-[18] border rounded"
-                    for="file">Upload Stock</label>
-            </div>
-          
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Edit Team</h2>
+            <form action="" [formGroup]="editFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="teamName">
+                        <mat-option *ngFor="let team of listTeam" [value]="team.teamId">
+                          <img src="data:image/png;base64, {{team.base64}}" alt="" srcset="" class="w-[30px] h-[30px] object-contain inline-block"> {{team.teamname}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <div>
+                    <button (click)="editTeam()" class="bg-[#d8ba0f] px-[10px] py-[5px] rounded-sm">Edit</button>
+                    <button (click)="cancelEditTeam()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm ml-3" *ngIf="showEditForm">Cancel</button>
+                </div>
+            </form>
+            <form action="" [formGroup]="editSaveFormGroup" class="mt-10" *ngIf="showEditForm">
+                <mat-form-field class="w-full">
+                    <input matInput type="text" formControlName="teamName" placeholder="New Team Name">
+                    <mat-error *ngIf="editSaveFormGroup.get('teamName')?.valid">error</mat-error>
+                </mat-form-field>
+                <input type="file" name="file" id="file" accept="image/*" class="inputfile w-60 h-12" (change)="uploadFile($event)" />
+                <div>
+                    <button (click)="editSaveTeam()" class="bg-[#5ac679] px-[10px] py-[5px] rounded-sm">Save</button>
+                </div>
+            </form>
+        </div>
 
-    </form>
-    <button (click)="addTeam()">Save</button>
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Delete Team</h2>
+            <form action="" [formGroup]="deleteFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="teamName">
+                        <mat-option *ngFor="let team of listTeam" [value]="team.teamId">
+                            <img src="data:image/png;base64, {{team.base64}}" alt="" srcset="" class="w-[30px] h-[30px] object-contain inline-block"> {{team.teamname}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <div>
+                    <button (click)="deleteTeam()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
