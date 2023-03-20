@@ -14,9 +14,9 @@
       <div class="h-full w-full border-y-[30px] border-[#1e2739] grid grid-cols-1 content-center">
         <img src="/assets/img/logo.png" alt="" srcset="" class="mx-auto">
         <input [(ngModel)]="user.username" type="text" name="" id=""
-          class="w-[200px] mx-auto mt-[50px] h-[40px] rounded-full p-3" placeholder="USERNAME">
+          class="w-[200px] mx-auto mt-[50px] h-[40px] rounded-full p-3" placeholder="USERNAME" (keydown.enter)="login(user)">
         <input [(ngModel)]="user.password" type="password" name="" id=""
-          class="w-[200px] mx-auto mt-[30px] h-[40px] rounded-full p-3" placeholder="PASSWORD">
+          class="w-[200px] mx-auto mt-[30px] h-[40px] rounded-full p-3" placeholder="PASSWORD" (keydown.enter)="login(user)">
         <div class="mx-auto">
           <button type="button"
             class="bg-[#d80f38] text-white text-xl py-3 px-10 rounded-full mt-[50px] hover:bg-[#c70d33]"

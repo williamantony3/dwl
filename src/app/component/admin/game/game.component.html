@@ -1,15 +1,119 @@
-<mat-form-field appearance="fill">
-    <mat-label>Input</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
-    <mat-select class="bg-white">
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
+<div class="p-[30px]">
+  <div class="w-full flex justify-between">
+      <div class="w-[30%]">
+          <h2 class="text-xl pb-5">Add Game</h2>
+          <form action="" [formGroup]="formGroup">
+              <mat-form-field class="w-full">
+                  <input matInput type="text" formControlName="gameName" placeholder="Game Name">
+                  <mat-error *ngIf="formGroup.get('gameName')?.valid">error</mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-select formControlName="home" placeholder="Home Team" (selectionChange)="getAllAway()">
+                    <mat-option *ngFor="let home of listHome" [value]="home.teamId">
+                      <img src="data:image/png;base64, {{home.base64}}" alt="" srcset="" class="w-[30px] h-[30px] object-contain inline-block"> {{home.teamname}}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+              <mat-select formControlName="away" placeholder="Away Team" (selectionChange)="getAllHome()">
+                  <mat-option *ngFor="let away of listAway" [value]="away.teamId">
+                    <img src="data:image/png;base64, {{away.base64}}" alt="" srcset="" class="w-[30px] h-[30px] object-contain inline-block"> {{away.teamname}}
+                  </mat-option>
+                </mat-select>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-select formControlName="locked" placeholder="Lock Status">
+                <mat-option value=0>Available</mat-option>
+                <mat-option value=1>Locked</mat-option>
+              </mat-select>
+        </mat-form-field>
+              <div>
+                  <button (click)="addGame()" class="bg-[#5ac679] px-[10px] py-[5px] rounded-sm">Save</button>
+              </div>
+          </form>
+      </div>
+
+      <div class="w-[30%]">
+          <h2 class="text-xl pb-5">Add Game to Segment</h2>
+          <form action="" [formGroup]="addToSegmentFormGroup">
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="gameName" placeholder="Game">
+                      <mat-option *ngFor="let game of listGameUnsegment" [value]="game.gameId">
+                        {{game.home.teamname}} (H) vs {{game.away.teamname}} (A)
+                      </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="segment" placeholder="Segment">
+                      <mat-option *ngFor="let segment of listSegment" [value]="segment.segmentId">
+                        {{segment.segmentName}}
+                      </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <div>
+                  <button (click)="addGameIntoSegment()" class="bg-[#d8ba0f] px-[10px] py-[5px] rounded-sm">Add Into Segment</button>
+              </div>
+          </form>
+          <h2 class="text-xl pb-5 mt-10">Set Game Result</h2>
+          <form action="" [formGroup]="updateGameWinnerFormGroup">
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="gameName" placeholder="Game" (selectionChange)="getAllGameTeam()">
+                      <mat-option *ngFor="let game of listUncompletedGame" [value]="game.gameId">
+                        {{game.home.teamname}} (H) vs {{game.away.teamname}} (A)
+                      </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="winner" placeholder="Result">
+                      <mat-option *ngFor="let team of listGameTeam" [value]="team.teamId">
+                        {{team.teamname}}
+                      </mat-option>
+                      <mat-option value="da41073c-0f44-4174-9d03-3d3f157c34f0">
+                        Draw
+                    </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <div>
+                  <button (click)="updateGameWinner()" class="bg-[#d8ba0f] px-[10px] py-[5px] rounded-sm">Set Game Result</button>
+              </div>
+          </form>
+          
+      </div>
+      
+
+      <div class="w-[30%]">
+          <h2 class="text-xl pb-5">Delete Game</h2>
+          <form action="" [formGroup]="deleteFormGroup">
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="gameName" placeholder="Game">
+                      <mat-option *ngFor="let game of listGame" [value]="game.gameId">
+                        {{game.home.teamname}} (H) vs {{game.away.teamname}} (A)
+                      </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <div>
+                  <button (click)="deleteGame()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm">Delete</button>
+              </div>
+          </form>
+          <h2 class="text-xl pb-5 mt-10">Lock Game</h2>
+          <form action="" [formGroup]="lockFormGroup">
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="gameName" placeholder="Game">
+                      <mat-option *ngFor="let game of listGame" [value]="game.gameId">
+                        {{game.home.teamname}} (H) vs {{game.away.teamname}} (A) - {{ game.locked == 1 ? 'Locked' : 'Unlocked'}}
+                      </mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                  <mat-select formControlName="locked" placeholder="Lock Status">
+                      <mat-option value=0>Unlock</mat-option>
+                      <mat-option value=1>Lock</mat-option>
+                    </mat-select>
+              </mat-form-field>
+              <div>
+                  <button (click)="setLockedStatusGame()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm">Set</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

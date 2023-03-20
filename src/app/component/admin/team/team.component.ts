@@ -97,7 +97,8 @@ export class TeamComponent {
   getAllTeam() {
     this.rest.getAllTeam().subscribe((event) => {
       if (event.type == HttpEventType.Response && event.ok) {
-        this.listTeam = Object(event.body)['data'];
+        let data:teamResponse[] = Object(event.body)['data'];
+        this.listTeam = data.filter(f => f.teamId != 'da41073c-0f44-4174-9d03-3d3f157c34f0');
       }
     });
   }

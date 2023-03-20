@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HomeadminComponent } from './component/admin/homeadmin/homeadmin.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     GameComponent,
     SegmentComponent,
     UserComponent,
-    DialogComponent
+    DialogComponent,
+    HomeadminComponent
   ],
   imports: [
     BrowserModule,

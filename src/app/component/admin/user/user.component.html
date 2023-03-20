@@ -1,1 +1,100 @@
-<p>user works!</p>
+<div class="p-[30px]">
+    <div class="w-full flex justify-between">
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Add User</h2>
+            <form action="" [formGroup]="formGroup">
+                <mat-form-field class="w-full">
+                    <input matInput type="text" formControlName="userName" placeholder="Username">
+                    <mat-error *ngIf="formGroup.get('userName')?.valid">error</mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <input matInput type="password" formControlName="password" placeholder="Password">
+                    <mat-error *ngIf="formGroup.get('password')?.valid">error</mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="role" placeholder="Role">
+                        <mat-option value="USER">User</mat-option>
+                        <mat-option value="ADMIN">Admin</mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <div>
+                    <button (click)="addUser()" class="bg-[#5ac679] px-[10px] py-[5px] rounded-sm">Save</button>
+                </div>
+            </form>
+        </div>
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Delete User</h2>
+            <form action="" [formGroup]="deleteFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="userName" placeholder="Username">
+                        <mat-option *ngFor="let user of listUser" [value]="user.id">
+                            {{ user.username }} - {{ user.role }}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <div>
+                    <button (click)="deleteUser()" class="bg-[#d80f38] px-[10px] py-[5px] rounded-sm">Delete</button>
+                </div>
+            </form>
+            <h2 class="text-xl pb-5 mt-10">Change User Option</h2>
+            <form action="" [formGroup]="changeOptionFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="userName" placeholder="Username" (selectionChange)="showUncompletedHistoryForm()">
+                        <mat-option *ngFor="let user of listUser" [value]="user.id">
+                            {{ user.username }} - {{ user.role }}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </form>
+            <form action="" [formGroup]="changeOptionHistoryFormGroup">
+                <mat-form-field class="w-full" *ngIf="showChangeOptionField">
+                    <mat-select formControlName="history" placeholder="History" (selectionChange)="showGameTeamForm()">
+                        <mat-option *ngFor="let history of listUncompletedHistoryByUser" [value]="history.game_id">
+                            {{ history.home }} (H) vs {{ history.away }} (A) => {{ history.option}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </form>
+            <form action="" [formGroup]="gameTeamFormGroup">
+                <mat-form-field class="w-full"  *ngIf="showGameTeamField">
+                    <mat-select formControlName="option" placeholder="Option">
+                        <mat-option *ngFor="let team of listGameTeam" [value]="team.teamId">
+                          {{team.teamname}}
+                        </mat-option>
+                        <mat-option value="da41073c-0f44-4174-9d03-3d3f157c34f0">
+                          Draw
+                      </mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </form>
+            <div>
+                <button (click)="changeUserOption()" class="bg-[#d8ba0f] px-[10px] py-[5px] rounded-sm">Change</button>
+            </div>
+        </div>
+        <div class="w-[30%]">
+            <h2 class="text-xl pb-5">Redeem Point User</h2>
+            <form action="" [formGroup]="redeemFormGroup">
+                <mat-form-field class="w-full">
+                    <mat-select formControlName="userName" placeholder="Username" (selectionChange)="showHistoryForm()">
+                        <mat-option *ngFor="let user of listUser" [value]="user.id">
+                            {{ user.username }} - {{ user.role }}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </form>
+                <form action="" [formGroup]="redeemHistoryFormGroup">
+                    <mat-form-field class="w-full" *ngIf="showHistoryField">
+                        <mat-select formControlName="history" placeholder="History">
+                            <mat-option *ngFor="let history of listHistory" [value]="history.game_id">
+                                {{ history.home }} (H) vs {{ history.away }} (A)
+                            </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                </form>
+                <div>
+                    <button (click)="userClaimPointGame()" class="bg-[#d8ba0f] px-[10px] py-[5px] rounded-sm">Redeem</button>
+                </div>
+        </div>
+
+    </div>
+</div>

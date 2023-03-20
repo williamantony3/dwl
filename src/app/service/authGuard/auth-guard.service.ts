@@ -11,11 +11,15 @@ export class AuthGuardService implements CanActivate {
   constructor(private authS: AuthService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-
-    console.log();
+    const userPath = ['user'];
+    const adminPath = ['admin'];
 
     if (route.routeConfig?.path == "login" &&this.authS.isloggin() ){
-      this.router.navigate(["home"])
+      if(this.authS.getUsername().role == 'USER'){
+        this.router.navigate(["user/home"])
+      }else{
+        this.router.navigate(["admin/home"])
+      }
     }
     else if (route.routeConfig?.path != "login") {
       if (!this.authS.isloggin()) {
@@ -23,6 +27,12 @@ export class AuthGuardService implements CanActivate {
         return false;
       }
 
+    }
+    
+    if(this.authS.getUsername().role == 'USER'){
+      return userPath.find(f => f.search(route.routeConfig?.path?.toString()!) >=0) ? true : false;
+    }else{
+      return adminPath.find(f => f.search(route.routeConfig?.path?.toString()!) >=0) ? true : false;
     }
 
     return true;

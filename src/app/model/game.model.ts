@@ -1,10 +1,7 @@
-import { team } from "./team.model"
-import { teamResponse } from "./teamResponse.model"
-
-export type Game = {
-    away:teamResponse,
-    gameId:string,
+export type game = {
+    away:string,
     gameName:string,
-    home:teamResponse,
-    locked:number
+    home:string,
+    locked:number,
+    gameId?:string
 }

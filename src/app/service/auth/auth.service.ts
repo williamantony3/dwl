@@ -27,6 +27,9 @@ export class AuthService {
   public getUsername() {
     return this.jwtHelper.decodeToken(this.getToken()!);
   }
+  public getUserId() {
+    return this.jwtHelper.decodeToken(this.getToken()!)?.userId;
+  }
 }
 
 export const TOKEN_KEY = "accessToken";

@@ -1,8 +1,14 @@
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { timeout } from 'rxjs';
+import { claim } from 'src/app/model/claim.model';
+import { game } from 'src/app/model/game.model';
+import { gameToSegment } from 'src/app/model/gameToSegment.model';
+import { gameWinner } from 'src/app/model/gameWinner.model';
+import { optionAdmin } from 'src/app/model/optionAdmin.model';
 import { segment } from 'src/app/model/segment.model';
 import { team } from 'src/app/model/team.model';
+import { User } from 'src/app/model/User.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -47,10 +53,56 @@ export class RestService {
     const request = new HttpRequest("GET", url, {headers: header});
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
+  public addGameIntoSegment(gameToSegment:gameToSegment) {
+    const url = this.host + "/segment/addGameIntoSegment"
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("POST", url, JSON.stringify(gameToSegment), {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
   // game
   public getGameByGameId(gameId: string){
     const url = this.host + "/game/getGameById/" + gameId;
     const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public addGame(game:game) {
+    const url = this.host + "/game/saveGame"
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("POST", url, JSON.stringify(game), {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public getAllGame(){
+    const url = this.host + "/game/getAll?includePics=false";
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public deleteGameById(gameId: string){
+    const url = this.host + "/game/deleteGameById/" + gameId;
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("GET", url, {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public getHistoryGameUser(userId : string){
+    const url = this.host + "/game/getHistoryGame/" + userId;
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public userClaimPointGame(claim:claim) {
+    const url = this.host + "/game/userClaimPointGame"
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("POST", url, JSON.stringify(claim), {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public updateGameWinner(gameWinner:gameWinner){
+    const url = this.host + "/game/updateGameWinner";
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("PUT", url, JSON.stringify(gameWinner), {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public setLockedStatusGame(gameId: string, locked: number){
+    const url = this.host + "/game/lockedGame?locked=" + locked + "&gameId=" + gameId;
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("PUT", url, {headers: header});
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
   // team
@@ -61,7 +113,7 @@ export class RestService {
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
   public getAllTeam(){
-    const url = this.host + "/team/getAll";
+    const url = this.host + "/team/getAll?includePics=true";
     const request = new HttpRequest("GET", url);
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
@@ -76,5 +128,35 @@ export class RestService {
     const header = new HttpHeaders().append('Content-Type', 'application/json');
     const request = new HttpRequest("PUT", url, JSON.stringify(team), {headers: header});
     return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  // user
+  public getAllUser(){
+    const url = this.host + "/user/getAll";
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public addUser(user:User) {
+    const url = this.host + "/user/add"
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("POST", url, JSON.stringify(user), {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public deleteUserById(userId: string){
+    const url = this.host + "/user/deleteById/" + userId;
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("GET", url, {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  // public addPointUser(user:User){
+  //   const url = this.host + "/user/updateUser";
+  //   const header = new HttpHeaders().append('Content-Type', 'application/json');
+  //   const request = new HttpRequest("PUT", url, JSON.stringify(user), {headers: header});
+  //   return this.httpC.request(request).pipe(timeout(this.timeout));
+  // }
+  public changeUserOption(optionAdmin: optionAdmin){
+      const url = this.host + "/game/changeUserOption";
+      const header = new HttpHeaders().append('Content-Type', 'application/json');
+      const request = new HttpRequest("POST", url, JSON.stringify(optionAdmin), {headers: header});
+      return this.httpC.request(request).pipe(timeout(this.timeout));
   }
 }
