@@ -5,8 +5,11 @@ import { HomeadminComponent } from './component/admin/homeadmin/homeadmin.compon
 import { SegmentComponent } from './component/admin/segment/segment.component';
 import { TeamComponent } from './component/admin/team/team.component';
 import { UserComponent } from './component/admin/user/user.component';
+import { GameuserComponent } from './component/gameuser/gameuser.component';
+import { HistoryComponent } from './component/history/history.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
+import { SegmentuserComponent } from './component/segmentuser/segmentuser.component';
 import { AuthGuardService } from './service/authGuard/auth-guard.service';
 
 const routes: Routes = [
@@ -18,6 +21,9 @@ const routes: Routes = [
   {
     path: 'user', canActivate: [AuthGuardService], children: [
       {path: 'home', component: HomeComponent},
+      {path: 'segment/:segmentId', component: SegmentuserComponent},
+      {path: 'game/:gameId', component: GameuserComponent},
+      {path: 'history', component: HistoryComponent},
     ]
   },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuardService] },

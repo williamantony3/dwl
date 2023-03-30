@@ -13,14 +13,18 @@ export class LayoutComponent {
 
   showAds: boolean = true;
 
-  session: string = '';
+  role: string = '';
+  name: string = '';
+  points: number = 0;
   listSegment: segment[] = [];
 
   constructor(private authS: AuthService, 
     private rest: RestService,) {
     // console.log(authS.getUsername());
-    this.session = authS.getUsername().role;
+    this.role = authS.getUserRole();
+    this.name = authS.getUsername();
     this.getAllSegment();
+    this.getUserPoints();
   }
 
   loggout() {
@@ -33,5 +37,14 @@ export class LayoutComponent {
         this.listSegment = Object(event.body)['data'];
       }
     });
+  }
+
+  getUserPoints(){
+    this.rest.getUserById(this.authS.getUserId()).subscribe((event) => {
+      if (event.type == HttpEventType.Response && event.ok) {
+        this.points = Object(event.body)['point'];
+      }
+    });
+
   }
 }

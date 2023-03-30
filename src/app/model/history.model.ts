@@ -4,5 +4,6 @@ export type history = {
     home: string,
     away: string,
     game_id: string,
-    option: string
+    option: string,
+    game_name: string
 }

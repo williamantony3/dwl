@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
     const adminPath = ['admin'];
 
     if (route.routeConfig?.path == "login" &&this.authS.isloggin() ){
-      if(this.authS.getUsername().role == 'USER'){
+      if(this.authS.getUserRole() == 'USER'){
         this.router.navigate(["user/home"])
       }else{
         this.router.navigate(["admin/home"])
@@ -29,7 +29,7 @@ export class AuthGuardService implements CanActivate {
 
     }
     
-    if(this.authS.getUsername().role == 'USER'){
+    if(this.authS.getUserRole() == 'USER'){
       return userPath.find(f => f.search(route.routeConfig?.path?.toString()!) >=0) ? true : false;
     }else{
       return adminPath.find(f => f.search(route.routeConfig?.path?.toString()!) >=0) ? true : false;

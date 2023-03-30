@@ -26,7 +26,7 @@ export class LoginComponent {
       if (event.type == HttpEventType.Response && event.ok) {
         let token = Object(event.body)["data"];
         this.authS.setToken(token);
-        if(this.authS.getUsername().role == 'USER'){
+        if(this.authS.getUserRole() == 'USER'){
           this.router.navigate(["user/home"])
         }else{
           this.router.navigate(["admin/home"])

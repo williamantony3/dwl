@@ -1,10 +1,10 @@
 <div id="wrapper" class="h-screen w-screen bg-[#0a1422]">
     <div class="w-[5%] h-screen bg-[#1d2738] float-left grid grid-cols-1 content-between">
-        <div *ngIf="this.session == 'USER'">
-            <div class="h-[100px] py-[30px]"><a  [routerLink]="['/home']"><img src="/assets/img/logo.png" alt="" srcset="" class=""></a></div>
-            <div class="rounded-full border-[#0d1725] h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] hover:bg-white overflow-hidden" *ngFor="let segment of listSegment"><img src="data:image/png;base64, {{segment.base64}}" class="w-[50px] h-[50px] object-cover" alt="" srcset=""></div>
+        <div *ngIf="this.role == 'USER'">
+            <div class="h-[100px] py-[30px]"><a  [routerLink]="['/user/home']"><img src="/assets/img/logo.png" alt="" srcset="" class=""></a></div>
+            <div class="rounded-full border-[#0d1725] h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] hover:bg-white overflow-hidden" *ngFor="let segment of listSegment"><a [routerLink]="['/user/segment/', segment.segmentId]"><img src="data:image/png;base64, {{segment.base64}}" class="w-[50px] h-[50px] object-cover" alt="" srcset=""></a></div>
         </div>
-        <div *ngIf="this.session == 'ADMIN'">
+        <div *ngIf="this.role == 'ADMIN'">
             <div class="h-[100px] py-[30px]"><a [routerLink]="['/admin/home']"><img src="/assets/img/logo.png" alt="" srcset="" class=""></a></div>
             <div class="rounded-full border-white h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] overflow-hidden"><a [routerLink]="['/admin/user']"><img src="/assets/img/user.png" class="w-[50px] h-[50px] object-cover" alt="" srcset=""></a></div>
             <div class="rounded-full border-white h-[50px] w-[50px] text-white border-solid border-[1px] mx-auto mb-[20px] justify-center flex items-center cursor-pointer hover:text-[#0d1725] overflow-hidden"><a [routerLink]="['/admin/game']"><img src="/assets/img/match.png" class="w-[50px] h-[50px] object-cover" alt="" srcset=""></a></div>
@@ -16,15 +16,15 @@
     <div class="w-[95%] h-screen float-right">
         <div class="h-[90%]">
             <div class="flex justify-between h-[100px] pr-[30px]">
-                <div class="text-white bg-[#141e2d] pl-[30px] py-[30px] pr-[200px] text-2xl relative before:content-[''] before:absolute before:top-0 before:right-0 before:border-t-[100px] before:border-t-[#141e2d] before:border-r-[100px] before:border-r-[#0a1422] before:w-0" *ngIf="this.session == 'USER'">Welcome back ___, you have __ points</div>
-                <div class="text-white bg-[#141e2d] pl-[30px] py-[30px] pr-[200px] text-2xl relative before:content-[''] before:absolute before:top-0 before:right-0 before:border-t-[100px] before:border-t-[#141e2d] before:border-r-[100px] before:border-r-[#0a1422] before:w-0" *ngIf="this.session == 'ADMIN'">Admin Panel</div>
-                <div class="bg-[#d80f38] w-[200px] rounded-full h-[50px] my-[25px] relative" *ngIf="this.session == 'USER'">
-                    <div class="absolute bg-[#1d2738] w-[200px] rounded-full h-[50px] left-[-80px] text-white"><img src="/assets/img/scroll.png" class="w-[30px] h-[30px] inline-block ml-[30px] my-[10px] mr-[10px]" alt="" srcset="">H I S T O R Y</div>
+                <div class="text-white bg-[#141e2d] pl-[30px] py-[30px] pr-[200px] text-2xl relative before:content-[''] before:absolute before:top-0 before:right-0 before:border-t-[100px] before:border-t-[#141e2d] before:border-r-[100px] before:border-r-[#0a1422] before:w-0" *ngIf="this.role == 'USER'">Welcome back {{ this.name }}, you have {{ this.points }} points</div>
+                <div class="text-white bg-[#141e2d] pl-[30px] py-[30px] pr-[200px] text-2xl relative before:content-[''] before:absolute before:top-0 before:right-0 before:border-t-[100px] before:border-t-[#141e2d] before:border-r-[100px] before:border-r-[#0a1422] before:w-0" *ngIf="this.role == 'ADMIN'">Admin Panel</div>
+                <div class="bg-[#d80f38] w-[200px] rounded-full h-[50px] my-[25px] relative" *ngIf="this.role == 'USER'">
+                    <div class="absolute bg-[#1d2738] w-[200px] rounded-full h-[50px] left-[-80px] text-white"><a [routerLink]="['/user/history/']"><img src="/assets/img/scroll.png" class="w-[30px] h-[30px] inline-block ml-[30px] my-[10px] mr-[10px]" alt="" srcset="">H I S T O R Y</a></div>
                 </div>
             </div>
             <router-outlet></router-outlet>
         </div>
-        <div *ngIf="showAds && this.session == 'USER'" class="h-[10%] bg-[#3f3f3f] flex justify-evenly">
+        <div *ngIf="showAds && this.role == 'USER'" class="h-[10%] bg-[#3f3f3f] flex justify-evenly">
             <div class="h-full w-[30%] bg-[#595959]"></div>
             <div class="h-full w-[30%] bg-[#595959]"></div>
             <div class="h-full w-[30%] bg-[#595959] relative"></div>

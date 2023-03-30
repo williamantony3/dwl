@@ -1,0 +1,70 @@
+<div class="h-[80%] flex flex-col justify-evenly items-center text-white">
+    <div class="bg-[#1d2738] w-[80%] h-[60%] rounded-2xl p-[10px]">
+        <div class="border-[#d80f38] border-[3px] w-full h-full rounded-2xl">
+            <div class="w-full h-[90%] flex items-center justify-center">
+                <div class="w-[40%]  flex items-center justify-center">
+                    <div class="w-[60%] h-full text-center text-xl">H O M E</div>
+                    <div class="w-[40%] text-center">
+                        {{ game.home.teamname }}
+                        <img src="data:image/png;base64, {{ game.home.base64 }}" alt="" srcset="" class="mx-auto w-[200px] h-[200px] mt-2 object-contain">
+                    </div>
+                </div>
+                <div class="w-[20%]"><img src="/assets/img/vs.png" alt="" srcset="" class="mx-auto"></div>
+                <div class="w-[40%]  flex items-center justify-center">
+                    <div class="w-[40%] text-center">
+                        {{ game.away.teamname }}
+                        <img  src="data:image/png;base64, {{ game.away.base64 }}" alt="" srcset="" class="mx-auto w-[200px] h-[200px] mt-2 object-contain">
+                    </div>
+                    <div class="w-[60%] h-full text-center text-xl">A W A Y</div>
+                </div>
+            </div>
+            <div class="w-full h-[10%] text-center mb-3">
+                {{ game.gameName }}
+            </div>
+        </div>
+    </div>
+    <div *ngIf="optionUser != null || game.locked == 1">
+        <div class="radio-toolbar">
+            <input type="radio" id="radioApple" name="radioFruit" value="{{ game.home.teamId }}" checked="{{optionUser.option ==  game.home.teamId ? 'checked' : ''}}" disabled="{{optionUser.option !=  game.home.teamId ? 'disabled' : ''}}">
+            <label for="radioApple" class="left">H O M E</label>
+        
+            <input type="radio" id="radioBanana" name="radioFruit" value="da41073c-0f44-4174-9d03-3d3f157c34f0" checked="{{optionUser.option ==  'da41073c-0f44-4174-9d03-3d3f157c34f0' ? 'checked' : ''}}" disabled="{{optionUser.option !=  'da41073c-0f44-4174-9d03-3d3f157c34f0' ? 'disabled' : ''}}">
+            <label for="radioBanana" class="middle">D R A W</label>
+        
+            <input type="radio" id="radioOrange" name="radioFruit" value="{{ game.away.teamId }}" checked="{{optionUser.option ==  game.away.teamId ? 'checked' : ''}}" disabled="{{optionUser.option !=  game.away.teamId ? 'disabled' : ''}}">
+            <label for="radioOrange" class="right">A W A Y</label> 
+        </div>
+        <div *ngIf="game.winner == game.home.teamId" class="text-center pt-5">
+            Result : Home
+        </div>
+        <div *ngIf="game.winner == game.away.teamId">
+            Result : Away
+        </div>
+        <div *ngIf="game.winner == 'da41073c-0f44-4174-9d03-3d3f157c34f0'">
+            Result : Draw
+        </div>
+        <div class="text-center pt-5" *ngIf="game.winner == optionUser.option && optionUser.userClaim == null">
+            <button class="bg-green-500 px-[20px] py-[5px] rounded-full">Redeem</button>
+        </div>
+        <div class="text-center pt-5" *ngIf="game.winner == optionUser.option && optionUser.userClaim == 1">
+            <button class="bg-[#141b27] px-[20px] py-[5px] rounded-full cursor-not-allowed text-[#1d2738]" disabled>Redeemed</button>
+        </div>
+    </div>
+    <div *ngIf="optionUser == null && game.locked == 0">
+        <form action="" [formGroup]="optionForm">
+        <div class="radio-toolbar">
+            <input type="radio" id="radioApple" name="option" value="{{ game.home.teamId }}" formControlName="option">
+            <label for="radioApple" class="left">H O M E</label>
+        
+            <input type="radio" id="radioBanana" name="option" value="da41073c-0f44-4174-9d03-3d3f157c34f0" formControlName="option">
+            <label for="radioBanana" class="middle">D R A W</label>
+        
+            <input type="radio" id="radioOrange" name="option" value="{{ game.away.teamId }}" formControlName="option">
+            <label for="radioOrange" class="right">A W A Y</label> 
+        </div>
+        </form>
+    </div>
+    <div>
+        <button class="bg-green-500 px-[20px] py-[5px] rounded-full" *ngIf="optionUser == null" (click)="addGameDetail()">Finalize Option</button>
+    </div>
+</div>

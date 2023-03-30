@@ -23,6 +23,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeadminComponent } from './component/admin/homeadmin/homeadmin.component';
+import { SegmentuserComponent } from './component/segmentuser/segmentuser.component';
+import { GameuserComponent } from './component/gameuser/gameuser.component';
+import { HistoryComponent } from './component/history/history.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { HomeadminComponent } from './component/admin/homeadmin/homeadmin.compon
     SegmentComponent,
     UserComponent,
     DialogComponent,
-    HomeadminComponent
+    HomeadminComponent,
+    SegmentuserComponent,
+    GameuserComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +57,9 @@ import { HomeadminComponent } from './component/admin/homeadmin/homeadmin.compon
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,useClass:HeaderInterceptorService,multi:true

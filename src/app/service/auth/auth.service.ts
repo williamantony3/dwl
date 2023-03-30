@@ -25,10 +25,13 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(this.getToken());
   }
   public getUsername() {
-    return this.jwtHelper.decodeToken(this.getToken()!);
+    return this.jwtHelper.decodeToken(this.getToken()!)?.sub;
   }
   public getUserId() {
     return this.jwtHelper.decodeToken(this.getToken()!)?.userId;
+  }
+  public getUserRole() {
+    return this.jwtHelper.decodeToken(this.getToken()!)?.role;
   }
 }
 

@@ -76,6 +76,23 @@ export class RestService {
     const request = new HttpRequest("GET", url);
     return this.httpC.request(request).pipe(timeout(this.timeout));
   }
+  public getGameById(gameId: string){
+    const url = this.host + "/game/getGameById/" + gameId;
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  public getGameDetailByUserAndGameId(userId: string, gameId: string){
+    const url = this.host + "/game/getGameDetailByUserAndGameId?userId=" + userId + "&gameId=" + gameId;
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+  
+  public addGameDetail(gameId: string, option: string, finalizeOption: number) {
+    const url = this.host + "/game/addGameDetail"
+    const header = new HttpHeaders().append('Content-Type', 'application/json');
+    const request = new HttpRequest("POST", url, {gameId: gameId, option: option, finalizeOption: finalizeOption}, {headers: header});
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
   public deleteGameById(gameId: string){
     const url = this.host + "/game/deleteGameById/" + gameId;
     const header = new HttpHeaders().append('Content-Type', 'application/json');
@@ -159,4 +176,10 @@ export class RestService {
       const request = new HttpRequest("POST", url, JSON.stringify(optionAdmin), {headers: header});
       return this.httpC.request(request).pipe(timeout(this.timeout));
   }
+  public getUserById(userId: string){
+    const url = this.host + "/user/getById/" + userId;
+    const request = new HttpRequest("GET", url);
+    return this.httpC.request(request).pipe(timeout(this.timeout));
+  }
+
 }
