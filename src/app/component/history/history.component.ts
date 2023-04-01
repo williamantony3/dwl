@@ -31,7 +31,7 @@ export class HistoryComponent implements AfterViewInit{
 
   
   getAllHistory() {
-    this.rest.getHistoryGameUser("fc7384d6-c8fd-4b75-9b13-95c69dcad150").subscribe((event) => {
+    this.rest.getHistoryGameUser(this.authS.getUserId()).subscribe((event) => {
       if (event.type == HttpEventType.Response && event.ok) {
         this.dataSource.data = Object(event.body)['data'] ;
       }

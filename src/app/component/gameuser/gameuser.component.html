@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="optionUser != null || game.locked == 1">
+    <div *ngIf="optionUser != null">
         <div class="radio-toolbar">
             <input type="radio" id="radioApple" name="radioFruit" value="{{ game.home.teamId }}" checked="{{optionUser.option ==  game.home.teamId ? 'checked' : ''}}" disabled="{{optionUser.option !=  game.home.teamId ? 'disabled' : ''}}">
             <label for="radioApple" class="left">H O M E</label>
@@ -37,10 +37,10 @@
         <div *ngIf="game.winner == game.home.teamId" class="text-center pt-5">
             Result : Home
         </div>
-        <div *ngIf="game.winner == game.away.teamId">
+        <div *ngIf="game.winner == game.away.teamId" class="text-center pt-5">
             Result : Away
         </div>
-        <div *ngIf="game.winner == 'da41073c-0f44-4174-9d03-3d3f157c34f0'">
+        <div *ngIf="game.winner == 'da41073c-0f44-4174-9d03-3d3f157c34f0'" class="text-center pt-5">
             Result : Draw
         </div>
         <div class="text-center pt-5" *ngIf="game.winner == optionUser.option && optionUser.userClaim == null">
@@ -50,7 +50,7 @@
             <button class="bg-[#141b27] px-[20px] py-[5px] rounded-full cursor-not-allowed text-[#1d2738]" disabled>Redeemed</button>
         </div>
     </div>
-    <div *ngIf="optionUser == null && game.locked == 0">
+    <div *ngIf="optionUser == null">
         <form action="" [formGroup]="optionForm">
         <div class="radio-toolbar">
             <input type="radio" id="radioApple" name="option" value="{{ game.home.teamId }}" formControlName="option">
@@ -65,6 +65,6 @@
         </form>
     </div>
     <div>
-        <button class="bg-green-500 px-[20px] py-[5px] rounded-full" *ngIf="optionUser == null" (click)="addGameDetail()">Finalize Option</button>
+        <button class="bg-green-500 px-[20px] py-[5px] rounded-full" *ngIf="optionUser == null && game.locked == 0" (click)="addGameDetail()">Finalize Option</button>
     </div>
 </div>
