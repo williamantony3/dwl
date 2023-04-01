@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../model/User.model';
 import { AuthService } from '../../service/auth/auth.service';
 import { RestService } from '../../service/rest/rest.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,8 @@ import { RestService } from '../../service/rest/rest.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  whatsapp: string = environment.whatsapp;
 
   user: User = {
     username: '',

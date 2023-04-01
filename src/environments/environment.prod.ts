@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  host: ""
+  host: "",
+  whatsapp: '6282180006950'
 };

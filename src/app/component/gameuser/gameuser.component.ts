@@ -8,6 +8,7 @@ import { gameResponse } from 'src/app/model/gameResponse.model';
 import { optionUser } from 'src/app/model/optionUser.model';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { RestService } from 'src/app/service/rest/rest.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-gameuser',
@@ -15,6 +16,7 @@ import { RestService } from 'src/app/service/rest/rest.service';
   styleUrls: ['./gameuser.component.css']
 })
 export class GameuserComponent {
+  whatsapp: string = environment.whatsapp;
   gameId: string = '';
   game: gameResponse={
     away: {

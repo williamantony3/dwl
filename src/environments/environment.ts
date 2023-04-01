@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  host: "http://192.168.18.184:8080"
+  host: "http://192.168.18.184:8080",
+  whatsapp: '6282180006950'
 };
 
 /*

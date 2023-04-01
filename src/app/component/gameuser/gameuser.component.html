@@ -44,7 +44,7 @@
             Result : Draw
         </div>
         <div class="text-center pt-5" *ngIf="game.winner == optionUser.option && optionUser.userClaim == null">
-            <a href="https://wa.me/6282180006950?text=Testing"><button class="bg-green-500 px-[20px] py-[5px] rounded-full">Redeem</button></a>
+            <a href="https://wa.me/{{this.whatsapp}}?text=Testing"><button class="bg-green-500 px-[20px] py-[5px] rounded-full">Redeem</button></a>
         </div>
         <div class="text-center pt-5" *ngIf="game.winner == optionUser.option && optionUser.userClaim == 1">
             <button class="bg-[#141b27] px-[20px] py-[5px] rounded-full cursor-not-allowed text-[#1d2738]" disabled>Redeemed</button>
